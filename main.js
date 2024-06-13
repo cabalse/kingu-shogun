@@ -1,4 +1,3 @@
-import "./style.css";
 import Phaser from "phaser";
 
 class Example extends Phaser.Scene {
