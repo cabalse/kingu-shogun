@@ -6,4 +6,4 @@ const initScene = {
   create: create,
 };
 
-export default initScene;
+export default game;

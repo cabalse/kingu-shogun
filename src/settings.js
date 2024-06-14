@@ -1,0 +1,6 @@
+const SCREEN_HEIGHT = 600;
+const SCREEN_WIDTH = 800;
+
+const GRAVITY = 200;
+
+export { SCREEN_HEIGHT, SCREEN_WIDTH, GRAVITY };
