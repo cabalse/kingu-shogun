@@ -1,8 +1,8 @@
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from "../settings";
+import settings from "../settings";
 
 const centerOnScreen = {
-  x: SCREEN_WIDTH / 2,
-  y: SCREEN_HEIGHT / 2,
+  x: settings.SCREEN_WIDTH / 2,
+  y: settings.SCREEN_HEIGHT / 2,
 };
 
 export default centerOnScreen;

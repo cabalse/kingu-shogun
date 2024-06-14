@@ -6,6 +6,12 @@ function preload() {
 
 function create() {
   this.add.image(centerOnScreen.x, centerOnScreen.y, "splash-screen");
+
+  this.input.keyboard.on("keydown", () => {
+    this.scene.stop("splash");
+    this.scene.remove("splash");
+    this.scene.start("menu");
+  });
 }
 
 const splash = {

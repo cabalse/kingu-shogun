@@ -1,17 +1,19 @@
 import Phaser from "phaser";
 
-import { GRAVITY, SCREEN_HEIGHT, SCREEN_WIDTH } from "./settings";
+import settings from "./settings";
+
 import splash from "./components/scenes/splash";
+import menu from "./components/scenes/menu";
 
 const config = {
   type: Phaser.AUTO,
-  width: SCREEN_WIDTH,
-  height: SCREEN_HEIGHT,
-  scene: [splash], // [gameOver, game, menu, splash]
+  width: settings.SCREEN_WIDTH,
+  height: settings.SCREEN_HEIGHT,
+  scene: [menu, splash], // [gameOver, game, menu, splash]
   physics: {
     default: "arcade",
     arcade: {
-      gravity: { y: GRAVITY },
+      gravity: { y: settings.GRAVITY },
     },
   },
 };

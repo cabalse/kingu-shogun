@@ -1,6 +1,12 @@
-const SCREEN_HEIGHT = 600;
-const SCREEN_WIDTH = 800;
+const settings = Object.freeze({
+  TITLE: "KINGU SHOGUN",
 
-const GRAVITY = 200;
+  BACKGROUND_COLOR: "black",
 
-export { SCREEN_HEIGHT, SCREEN_WIDTH, GRAVITY };
+  SCREEN_HEIGHT: 600,
+  SCREEN_WIDTH: 800,
+
+  GRAVITY: 200,
+});
+
+export default settings;
