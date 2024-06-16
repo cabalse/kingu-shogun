@@ -10,9 +10,9 @@ class Menu extends Phaser.Scene {
   preload() {}
 
   create() {
-    const titleText = this.add.text(centerOnScreen.x, 100, "").setOrigin(0.5);
-    titleText.text = settings.TITLE;
-    textStyle.gameTitle(titleText);
+    // const titleText = this.add.text(centerOnScreen.x, 100, "").setOrigin(0.5);
+    // titleText.text = settings.TITLE;
+    // textStyle.gameTitle(titleText);
   }
 }
 

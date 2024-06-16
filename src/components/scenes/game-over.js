@@ -6,7 +6,7 @@ import centerOnScreen from "../../utilities/center-on-screen";
 
 class GameOver extends Phaser.Scene {
   constructor() {
-    super({ key: "gameOver", active: true });
+    super({ key: "gameOver" });
 
     this.playerText;
   }
@@ -15,14 +15,13 @@ class GameOver extends Phaser.Scene {
     this.load.image("block", "assets/block.png");
     this.load.image("rub", "assets/rub.png");
     this.load.image("end", "assets/end.png");
-
-    this.load.bitmapFont("font", "assets/font.png", "assets/font.xml");
   }
 
   create() {
-    const titleText = this.add.text(centerOnScreen.x, 100, "").setOrigin(0.5);
-    titleText.text = settings.TITLE;
-    textStyle.gameTitle(titleText);
+    this.add
+      .bitmapText(175, 70, "glitchy", settings.TITLE)
+      .setScale(1.4)
+      .setTint(0xff0000);
 
     this.add
       .bitmapText(100, 170, "font", "RANK  SCORE   NAME")

@@ -18,12 +18,9 @@ class InputPanel extends Phaser.Scene {
   }
 
   create() {
-    let text = this.add.bitmapText(
-      130,
-      50,
-      "font",
-      "ABCDEFGHIJ\n\nKLMNOPQRST\n\nUVWXYZ.-"
-    );
+    let text = this.add
+      .bitmapText(130, 50, "font", "ABCDEFGHIJ\n\nKLMNOPQRST\n\nUVWXYZ.-")
+      .setScale(0.5);
 
     text.setLetterSpacing(20);
     text.setInteractive();
@@ -37,6 +34,35 @@ class InputPanel extends Phaser.Scene {
 
     text.on("pointermove", this.moveBlock, this);
     text.on("pointerup", this.pressKey, this);
+
+    this.input.keyboard.on("keyup-LEFT", () => console.log("LEFT"), this);
+    this.input.keyboard.on("keyup-RIGHT", this.moveRight, this);
+    // this.input.keyboard.on("keyup_UP", this.moveUp, this);
+    // this.input.keyboard.on("keyup_DOWN", this.moveDown, this);
+    // this.input.keyboard.on("keyup_ENTER", this.pressKey, this);
+    // this.input.keyboard.on("keyup_SPACE", this.pressKey, this);
+  }
+
+  moveLeft() {
+    console.log("moveLeft");
+    if (this.cursor.x > 0) {
+      this.cursor.x--;
+      this.block.x -= 52;
+    } else {
+      this.cursor.x = 9;
+      this.block.x += 52 * 9;
+    }
+  }
+
+  moveRight() {
+    console.log("moveRight");
+    if (this.cursor.x > 0) {
+      this.cursor.x++;
+      this.block.x += 52;
+    } else {
+      this.cursor.x = 9;
+      this.block.x -= 52 * 9;
+    }
   }
 
   moveBlock(pointer, x, y) {
