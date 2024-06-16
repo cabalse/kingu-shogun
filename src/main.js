@@ -2,14 +2,17 @@ import Phaser from "phaser";
 
 import settings from "./settings";
 
-import splash from "./components/scenes/splash";
-import menu from "./components/scenes/menu";
+import Splash from "./components/scenes/splash";
+import Menu from "./components/scenes/menu";
+import Game from "./components/scenes/game";
+import GameOver from "./components/scenes/game-over";
+import InputPanel from "./components/scenes/input-panel";
 
 const config = {
   type: Phaser.AUTO,
   width: settings.SCREEN_WIDTH,
   height: settings.SCREEN_HEIGHT,
-  scene: [menu, splash], // [gameOver, game, menu, splash]
+  scene: [GameOver, Splash, Menu, Game, InputPanel],
   physics: {
     default: "arcade",
     arcade: {

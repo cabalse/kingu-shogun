@@ -16,3 +16,4 @@
 - player movement.
 - Collision
 - Main menu
+- End game scene with highscore list
