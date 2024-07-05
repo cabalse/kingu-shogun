@@ -1,6 +1,4 @@
 const settings = Object.freeze({
-  TITLE: "KINGU SHOGUN",
-
   BACKGROUND_COLOR: "black",
 
   SCREEN_HEIGHT: 600,

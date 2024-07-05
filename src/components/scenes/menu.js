@@ -1,18 +1,23 @@
-import settings from "../../settings";
-import textStyle from "../../styles/text-style";
-import centerOnScreen from "../../utilities/center-on-screen";
+import fonts from "../../constants/fonts";
+import texts from "../../constants/texts";
+import text from "../../utilities/text";
 
 class Menu extends Phaser.Scene {
   constructor() {
     super({ key: "menu" });
   }
 
-  preload() {}
+  preload() {
+    this.load.bitmapFont(
+      "glitchy",
+      "assets/fonts/glitchy-64-font.png",
+      "assets/fonts/glitchy-64-font.xml"
+    );
+  }
 
   create() {
-    // const titleText = this.add.text(centerOnScreen.x, 100, "").setOrigin(0.5);
-    // titleText.text = settings.TITLE;
-    // textStyle.gameTitle(titleText);
+    text(this, 175, 30, texts.TITLE, fonts.MAIN);
+    text(this, 330, 200, texts.START, fonts.BUTTON);
   }
 }
 

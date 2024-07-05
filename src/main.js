@@ -1,13 +1,14 @@
 import Phaser from "phaser";
 
-import settings from "./settings";
+import settings from "./constants/settings";
 import Splash from "./components/scenes/splash";
+import Menu from "./components/scenes/menu";
 
 const config = {
   type: Phaser.AUTO,
   width: settings.SCREEN_WIDTH,
   height: settings.SCREEN_HEIGHT,
-  scene: Splash,
+  scene: [Splash, Menu],
   audio: {
     disableWebAudio: true,
   },

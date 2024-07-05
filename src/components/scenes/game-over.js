@@ -1,8 +1,9 @@
 // Following this tutorial: https://phaser.io/tutorials/retro-highscore-table
 
-import settings from "../../settings";
+import settings from "../../constants/settings";
 import textStyle from "../../styles/text-style";
 import centerOnScreen from "../../utilities/center-on-screen";
+import text from "../../utilities/text";
 
 class GameOver extends Phaser.Scene {
   constructor() {
@@ -18,10 +19,11 @@ class GameOver extends Phaser.Scene {
   }
 
   create() {
-    this.add
-      .bitmapText(175, 70, "glitchy", settings.TITLE)
-      .setScale(1.4)
-      .setTint(0xff0000);
+    // this.add
+    //   .bitmapText(175, 70, "glitchy", settings.TITLE)
+    //   .setScale(1.4)
+    //   .setTint(0xff0000);
+    text(175, 70, settings.TITLE);
 
     this.add
       .bitmapText(100, 170, "font", "RANK  SCORE   NAME")

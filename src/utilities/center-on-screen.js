@@ -1,4 +1,4 @@
-import settings from "../settings";
+import settings from "../constants/settings";
 
 const centerOnScreen = {
   x: settings.SCREEN_WIDTH / 2,

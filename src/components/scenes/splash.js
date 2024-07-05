@@ -1,11 +1,14 @@
-import settings from "../../settings";
+import fonts from "../../constants/fonts";
+import s from "../../constants/settings";
+import texts from "../../constants/texts";
 import centerOnScreen from "../../utilities/center-on-screen";
+import text from "../../utilities/text";
 
 class Splash extends Phaser.Scene {
   constructor() {
     super({ key: "splash" });
 
-    var intro;
+    // var intro;
   }
 
   preload() {
@@ -23,7 +26,7 @@ class Splash extends Phaser.Scene {
       "assets/fonts/bitpap-64-font.xml"
     );
 
-    this.load.audio("intro_music", ["assets/music/intro.mp3"]);
+    // this.load.audio("intro_music", ["assets/music/intro.mp3"]);
   }
 
   create() {
@@ -31,20 +34,17 @@ class Splash extends Phaser.Scene {
 
     this.add
       .image(centerOnScreen.x, centerOnScreen.y, "splash-screen")
-      .setScale(0.6);
+      .setScale(0.61);
 
-    this.add
-      .bitmapText(175, 30, "glitchy", settings.TITLE)
-      .setScale(1.4)
-      .setTint(0xff0000);
+    text(this, 175, 30, texts.TITLE, fonts.MAIN);
 
-    this.intro = this.sound.add("intro_music", { loop: true });
+    // this.intro = this.sound.add("intro_music", { loop: true });
 
     this.enableInput();
   }
 
   enableInput() {
-    this.add.bitmapText(300, 500, "bitpap", "PRESS KEY").setTint(0xff0000);
+    text(this, 300, 500, texts.PRESS_KEY, fonts.BUTTON);
 
     this.input.once(
       "pointerdown",
