@@ -1,4 +1,5 @@
 import fonts from "../../constants/fonts";
+import scenes from "../../constants/scenes";
 import s from "../../constants/settings";
 import texts from "../../constants/texts";
 import centerOnScreen from "../../utilities/center-on-screen";
@@ -36,7 +37,7 @@ class Splash extends Phaser.Scene {
       .image(centerOnScreen.x, centerOnScreen.y, "splash-screen")
       .setScale(0.61);
 
-    text(this, 175, 30, texts.TITLE, fonts.MAIN);
+    text(this, 180, 30, texts.TITLE, fonts.MAIN);
 
     // this.intro = this.sound.add("intro_music", { loop: true });
 
@@ -49,7 +50,7 @@ class Splash extends Phaser.Scene {
     this.input.once(
       "pointerdown",
       function (event) {
-        this.scene.start("menu");
+        this.scene.start(scenes.INTRO);
       },
       this
     );
@@ -57,7 +58,7 @@ class Splash extends Phaser.Scene {
     this.input.keyboard.on(
       "keydown",
       () => {
-        this.scene.start("menu");
+        this.scene.start(scenes.INTRO);
       },
       this
     );
