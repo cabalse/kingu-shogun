@@ -1,16 +1,16 @@
 import settings from "../../constants/settings";
 
-const levelSetting = Object.freeze({
+const levelSettings = Object.freeze({
   SAMURAI_SPAWN_POINT: [
-    { x: 360, y: 180 },
-    { x: 440, y: 180 },
+    { x: 360, y: 180, level: 3 },
+    { x: 440, y: 180, level: 3 },
   ],
 });
 
 class Game extends Phaser.Scene {
   platforms;
   climbs;
-  player;
+  player = { sprite: null, level: 0, couldClimb: false };
   cursors;
   shogun;
   samurais = [];
@@ -83,28 +83,33 @@ class Game extends Phaser.Scene {
     this.spawnSamurai(0, this.samurais);
     this.spawnSamurai(1, this.samurais);
 
-    // Spawn the player
-    this.player = this.physics.add.sprite(400, 550, "ninja");
-    this.player.setBounce(0.2);
-    this.player.body.setGravityY(300);
-    this.player.setCollideWorldBounds(true);
-    this.physics.add.collider(this.player, this.platforms);
+    this.spawnPlayer();
 
     // Set up controls
     this.cursors = this.input.keyboard.createCursorKeys();
   }
 
   update() {
+    const playerSprite = this.player.sprite;
+
     // Player movement
     if (this.cursors.left.isDown) {
-      this.player.setVelocityX(-160);
+      playerSprite.setVelocityX(-160);
     } else if (this.cursors.right.isDown) {
-      this.player.setVelocityX(160);
+      playerSprite.setVelocityX(160);
     } else {
-      this.player.setVelocityX(0);
+      playerSprite.setVelocityX(0);
     }
-    if (this.cursors.up.isDown && this.player.body.touching.down) {
-      this.player.setVelocityY(-300);
+    if (this.player.couldClimb) {
+      if (this.cursors.up.isDown) {
+        playerSprite.setVelocityY(-160);
+      } else {
+        playerSprite.setVelocityY(0);
+      }
+    } else {
+      if (this.cursors.up.isDown && playerSprite.body.touching.down) {
+        playerSprite.setVelocityY(-300);
+      }
     }
   }
 
@@ -118,15 +123,31 @@ class Game extends Phaser.Scene {
     chain.ys.forEach((y) => group.create(chain.x, y, "chain"));
   }
 
+  spawnPlayer() {
+    this.player.sprite = this.physics.add.sprite(400, 550, "ninja");
+    this.player.sprite.setBounce(0.2);
+    this.player.sprite.body.setGravityY(300);
+    this.player.sprite.body.onOverlap = true;
+    this.player.sprite.setCollideWorldBounds(true);
+
+    this.physics.add.collider(this.player.sprite, this.platforms);
+    this.physics.add.overlap(this.player.sprite, this.climbs, () => {
+      this.player.couldClimb = true;
+    });
+  }
+
   spawnSamurai(spawnPoint, list) {
     const samurai = this.physics.add.sprite(
-      levelSetting.SAMURAI_SPAWN_POINT[spawnPoint].x,
-      levelSetting.SAMURAI_SPAWN_POINT[spawnPoint].y,
+      levelSettings.SAMURAI_SPAWN_POINT[spawnPoint].x,
+      levelSettings.SAMURAI_SPAWN_POINT[spawnPoint].y,
       "samurai"
     );
     samurai.setCollideWorldBounds(true);
     this.physics.add.collider(samurai, this.platforms);
-    list.push(samurai);
+    list.push({
+      sprite: samurai,
+      level: levelSettings.SAMURAI_SPAWN_POINT[spawnPoint].level,
+    });
   }
 }
 
