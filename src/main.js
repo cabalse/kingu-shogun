@@ -11,7 +11,7 @@ const config = {
   type: Phaser.AUTO,
   width: settings.SCREEN_WIDTH,
   height: settings.SCREEN_HEIGHT,
-  scene: [Splash, Intro, Menu, Game, GameOver],
+  scene: [Game, Splash, Intro, Menu, GameOver],
   audio: {
     disableWebAudio: true,
   },
